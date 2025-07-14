@@ -4,6 +4,11 @@
 SCRIPT_PATH="/usr/local/bin/intel-wayland-fix-full-color"
 UDEV_RULE_PATH="/etc/udev/rules.d/80-i915.rules"
 
+# === LICENSE ===
+echo -e "📜 \033[1;35mMIT License\033[0m"
+echo -e "👤 \033[1;36mCopyright (c) 2025 Amandeep Singh\033[0m"
+echo ""
+
 echo "🧹 Intel Wayland Full-Color Fix Uninstaller"
 echo "------------------------------------------"
 

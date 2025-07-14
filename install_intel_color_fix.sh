@@ -20,6 +20,12 @@ done
 # === udev rule content ===
 UDEV_RULE='ACTION=="add", SUBSYSTEM=="module", KERNEL=="i915", RUN+="/usr/local/bin/intel-wayland-fix-full-color"'
 
+# === LICENSE ===
+echo -e "📜 \033[1;35mMIT License\033[0m"
+echo -e "👤 \033[1;36mCopyright (c) 2025 Amandeep Singh\033[0m"
+echo -e "⚠️  \033[1;33mUse at your own risk. See LICENSE file for full terms.\033[0m"
+echo ""
+
 # === WARNING & DISCLAIMER ===
 echo -e "🔺 \033[1;31mWARNING!\033[0m"
 echo "This script will:"
@@ -27,7 +33,7 @@ echo "📁 Create: $SCRIPT_PATH"
 echo "📄 Add udev rule: $UDEV_RULE_PATH"
 echo ""
 echo "💡 This script is designed ONLY for:"
-echo "   - Arch Linux-based systems 🐧"
+echo "   - Arch Linux systems 🐧"
 echo "   - Intel GPUs using the i915 kernel module 🎮"
 echo ""
 echo "⚠️  This script may NOT work on other Linux distributions."
