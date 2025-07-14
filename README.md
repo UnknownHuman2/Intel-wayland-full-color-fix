@@ -42,6 +42,9 @@ This script is based on info from the [Arch Wiki](https://wiki.archlinux.org/tit
 ## ⚙️ Installation Guide
 
 ```bash
+git clone "https://github.com/UnknownHuman2/Intel-wayland-full-color-fix.git"
+cd Intel-wayland-full-color-fix
+
 chmod +x install_intel_color_fix.sh
 ./install_intel_color_fix.sh
 ```
