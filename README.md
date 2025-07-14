@@ -35,7 +35,7 @@ This script is based on info from the [Arch Wiki](https://wiki.archlinux.org/tit
 | Intel GPU          | Specifically using the `i915` module |
 | Wayland            | X11 users, this isn’t for you        |
 | `proptest`         | Comes with `libdrm`                  |
-| `sudo` or `pkexec` | This script needs system access      |
+| `sudo`             | This script needs system access      |
 
 ---
 
