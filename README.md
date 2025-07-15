@@ -1,20 +1,36 @@
 # Intel-wayland-full-color-fix
 
-**Tired of your screen looking like a 2003 washed-out LCD? This fixes full RGB range on Intel iGPUs under Wayland.**\
+**By default some monitors might not be recognized properly by the Intel GPU and have washed out colors because it's not in full-range RGB mode.**
+
+This script is adapted from the [Arch Wiki - Intel Graphics](https://wiki.archlinux.org/title/Intel_graphics#Fix_colors_for_Wayland). Credit to those Guys or Gals.
+
+---
+## ⚠️ Disclaimer
+
+This script is a workaround, not an official or guaranteed fix. It modifies low-level GPU connector properties via `proptest` to force full-range RGB output on Intel GPUs under Wayland — specifically to resolve the washed-out color issue that affects some displays.
+
+❗ This approach may bypass compositor-level logic and is considered fragile by design. It’s intended for setups where:
+- The compositor does not offer a full RGB toggle.
+- Your monitor is misidentified (e.g. as a TV or limited-range device)
+- You’ve confirmed that native options (like KDE Plasma 6 settings) do not resolve the issue.
+
+🛠️ Although generally safe, this script does modify live GPU connector settings. Be aware of the following:
+- Display flickering or temporary black screens may occur when applying changes.
+- Forcing full RGB on displays that expect limited RGB (such as TVs) can cause crushed blacks or incorrect colors.
+- This workaround may conflict with future compositor updates that add proper RGB handling.
 
 ---
 
-## ⚠️ Disclaimer First (Seriously)
+## ✅ Best Practices (Recommended)
+Try native compositor settings first
+ - KDE Plasma 5.24+ (Kwin): Use the Display Configration in System settings to toggle RGB range.
+ - GNOME: Add `<rgbrange>full</rgbrange>` to `~/.config/monitors.xml` ([Arch Wiki](https://wiki.archlinux.org/title/Intel_graphics#Fix_colors_for_Wayland))
+ - Hyprland (wlroots-based Wayland compositor): Currently does not offer a built-in full-range RGB toggle.
+ - Other compositor: Cheak the Official Doucmention or Wiki.
+ 
+Use `edid-decode` or `libdisplay-info` to confirm your display advertises full RGB.
 
-This script is based on info from the [Arch Wiki](https://wiki.archlinux.org/title/Intel_graphics#Fix_colors_for_Wayland). Use at your own risk.
-
-- 🧠 Only for **Intel GPUs** using the `i915` driver
-- 🐧 Designed for **Wayland sessions**, especially **Hyprland**
-- 🧪 **KDE Plasma 6** has native support (check Display Settings first)
-- 📚 **GNOME** users: might work, but check the [Wiki](https://wiki.archlinux.org/title/Intel_graphics#Fix_colors_for_Wayland) first
-- ❓ On **Arch-based distros**, your mileage may vary (especially with modified kernels)
-- 🧪 On **Non-Arch distros** like Debian/Fedora/etc — feel free to try, but don’t expect miracles
-- 💥 I’m not responsible for broken displays, failed boots, or your system spiraling into an existential crisis
+Avoid using on setups where the display expects limited RGB (e.g. TVs, Old Moniters).  
 
 ---
 
@@ -27,24 +43,11 @@ This script is based on info from the [Arch Wiki](https://wiki.archlinux.org/tit
 
 ---
 
-## 📦 Requirements
-
-| What               | Why                                  |
-| ------------------ | ------------------------------------ |
-| Arch Linux         | That’s what this was built on        |
-| Intel GPU          | Specifically using the `i915` module |
-| Wayland            | X11 users, this isn’t for you        |
-| `proptest`         | Comes with `libdrm`                  |
-| `sudo`             | This script needs system access      |
-
----
-
 ## ⚙️ Installation Guide
-
+Apply this script only if you’ve ruled out all standard methods.  
 ```bash
 git clone "https://github.com/UnknownHuman2/Intel-wayland-full-color-fix.git"
 cd Intel-wayland-full-color-fix
-
 chmod +x install_intel_color_fix.sh
 ./install_intel_color_fix.sh
 ```
@@ -80,19 +83,17 @@ This is how the script politely asks for your permission before touching your sy
 ![CLI Screenshot](images/cli_script_preview.png)
 
 ---
+## 👥 Credit & Support
 
-## 🧠 Why This Exists
+**📝 Arch Wiki - Guys and Gals**
+-  For documenting the `proptest` workaround in the first place.
 
-It took me **6 months** of staring at a washed-out screen before I found the problem. Intel defaults to *limited RGB* on Wayland. This script applies the fix **automatically** using tools from the Arch Wiki.
-
-No screenshots here. Your **eyes** will be the judge.
+**👤 Reddit**
+- User from `r/Hyprland` who helped identify bugs and edge cases, and highlighted important behavior on wlroots-based setups.
+- Another helpful user from `r/archlinux` who provided critical feedback on potential risks and encouraged safer practices.
 
 ---
 
 ## 📝 License
 
-[MIT](LICENSE) — because open-source legalese should be one page, not a trilogy.  
-Use it, modify it, make memes with it — just credit me.  
-If it breaks your system, monitor, or soul — don’t sue me. You’ve been warned.
-
----
+[MIT](LICENSE) – standard "use at your own risk" license.

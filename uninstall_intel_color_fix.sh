@@ -10,7 +10,7 @@ echo -e "👤 \033[1;36mCopyright (c) 2025 Amandeep Singh\033[0m"
 echo ""
 
 echo "🧹 Intel Wayland Full-Color Fix Uninstaller"
-echo "------------------------------------------"
+echo ""
 
 # === Check existing files ===
 REMOVE_LIST=()
